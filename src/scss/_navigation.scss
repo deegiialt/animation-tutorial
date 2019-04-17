@@ -1,0 +1,54 @@
+.navigation {
+  height: 100vh;
+  font-family: 'BlueHighway-Bold';
+  font-size: 10vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  // text-align: center;
+  background-color: #A37774;
+  counter-reset: a;
+
+  &__link {
+    text-decoration: none;
+    color: #FCDDBC;
+    position: relative;
+
+    &:before {
+      position: absolute;
+      content: '0'counter(a);
+      counter-increment: a;
+      font-size: 20px;
+      left: -25px;
+      top: 0;
+    }
+  }
+}
+
+// Fonts
+@at-root {
+	@font-face {
+	  font-family: BlueHighway-Bold;
+	  src: url('/assets/fonts/bluehigb.eot');
+	  src: url('/assets/fonts/bluehigb.eot?#iefix') format('embedded-opentype'),
+	       url('/assets/fonts/bluehigb.woff2') format('woff2'),
+	       url('/assets/fonts/bluehigb.woff') format('woff');
+	}
+}
+
+// Resets
+*,
+*::after,
+*::before {
+	margin: 0;
+	padding: 0;
+	box-sizing: inherit;
+}
+
+ul {
+	list-style-type: none;
+}
+
+body {
+	box-sizing: border-box;
+}
