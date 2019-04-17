@@ -24,31 +24,3 @@
     }
   }
 }
-
-// Fonts
-@at-root {
-	@font-face {
-	  font-family: BlueHighway-Bold;
-	  src: url('/assets/fonts/bluehigb.eot');
-	  src: url('/assets/fonts/bluehigb.eot?#iefix') format('embedded-opentype'),
-	       url('/assets/fonts/bluehigb.woff2') format('woff2'),
-	       url('/assets/fonts/bluehigb.woff') format('woff');
-	}
-}
-
-// Resets
-*,
-*::after,
-*::before {
-	margin: 0;
-	padding: 0;
-	box-sizing: inherit;
-}
-
-ul {
-	list-style-type: none;
-}
-
-body {
-	box-sizing: border-box;
-}

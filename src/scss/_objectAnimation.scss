@@ -1,0 +1,17 @@
+$image-url: 'https://images.pexels.com/photos/830858/pexels-photo-830858.png?auto=compress&cs=tinysrgb&dpr=2&w=500';
+
+#objectAnimation {
+  background-image: url($image-url);
+  background-color: black;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.loader {
+  position: absolute;
+  bottom: 10%;
+  left: 12%;
+  color: white;
+  font-family: 'BlueHighway-Bold';
+  font-size: 50px;
+}
