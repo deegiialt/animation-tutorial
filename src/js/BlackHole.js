@@ -25,7 +25,7 @@ class BlackHole extends Component {
     window.addEventListener('resize', this.onWindowResize, false);
     
     // Initialize three.js scene
-    this.init();
+    this.initThree();
     document.addEventListener('mousemove', this.onMouseMove, false);
   }
 
@@ -34,28 +34,12 @@ class BlackHole extends Component {
     document.removeEventListener('mousemove', this.onMouseMove, false);
   }
 
-  init() {
+  initThree() {
     this.initRenderer();
-    this.initScene();
+    this.initSceneAndCamera();
     this.initLighting();
     this.initObjects();
     this.initAnimation();
-  }
-
-  onWindowResize() {
-    camera.aspect = window.innerWidth / window.innerHeight;
-    camera.updateProjectionMatrix();
-    renderer.setSize(window.innerWidth, window.innerHeight);
-  }
-
-  onMouseMove( event) {
-    let windowHalfX = window.innerWidth / 2;
-    let windowHalfY = window.innerHeight / 2;
-
-    let mouseX = ( event.clientX - windowHalfX );
-    let mouseY = ( event.clientY - windowHalfY );
-
-    this.setState({ mouseX, mouseY });
   }
 
   initRenderer() {
@@ -69,7 +53,7 @@ class BlackHole extends Component {
     document.getElementById('blackHole').appendChild(renderer.domElement);
   }
 
-  initScene() {
+  initSceneAndCamera() {
     //---- Scene ----//
     scene = new THREE.Scene();
 
@@ -87,10 +71,9 @@ class BlackHole extends Component {
     new OrbitControls( camera, renderer.domElement );
   }
 
-  initCameraMove() {
-    camera.position.x += ( this.state.mouseX - camera.position.x ) * .05;
-    camera.position.y += ( - ( this.state.mouseY - 200 ) - camera.position.y ) * .05;
-  }
+  sceneRenderer() {
+    renderer.render( scene, camera );
+  };
 
   initLighting() {
     let lights = [];
@@ -103,32 +86,6 @@ class BlackHole extends Component {
     scene.add( lights[0] );
     scene.add( lights[1] );
     scene.add( lights[2] );
-  }
-
-  renderScene() {
-    renderer.render( scene, camera );
-  };
-
-
-  initAnimation() {
-    let animate = () => {
-      requestAnimationFrame( animate );
-
-      // this.initCameraMove();
-
-      // Animating particles
-      pivotPoint.rotation.y += 0.008;
-
-      this.renderScene();  
-    };
-
-    // If Webgl available, initialize animation
-    if ( WEBGL.isWebGLAvailable() ) {
-      animate();
-    } else {
-      var warning = WEBGL.getWebGLErrorMessage();
-      document.getElementById( 'three' ).appendChild( warning );
-    }
   }
 
   initObjects() {
@@ -161,6 +118,48 @@ class BlackHole extends Component {
       particleMesh.position.set(_coords.x, _coords.y, _coords.z);
       pivotPoint.add(particleMesh);
     }
+  }
+
+  initAnimation() {
+    let animate = () => {
+      requestAnimationFrame( animate );
+
+      // this.initCameraMove();
+
+      // Animating particles
+      pivotPoint.rotation.y += 0.008;
+
+      this.sceneRenderer();  
+    };
+
+    // If Webgl available, initialize animation
+    if ( WEBGL.isWebGLAvailable() ) {
+      animate();
+    } else {
+      var warning = WEBGL.getWebGLErrorMessage();
+      document.getElementById( 'three' ).appendChild( warning );
+    }
+  }
+
+  onWindowResize() {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+  }
+
+  onMouseMove( event) {
+    let windowHalfX = window.innerWidth / 2;
+    let windowHalfY = window.innerHeight / 2;
+
+    let mouseX = ( event.clientX - windowHalfX );
+    let mouseY = ( event.clientY - windowHalfY );
+
+    this.setState({ mouseX, mouseY });
+  }
+
+  initCameraMove() {
+    camera.position.x += ( this.state.mouseX - camera.position.x ) * .05;
+    camera.position.y += ( - ( this.state.mouseY - 200 ) - camera.position.y ) * .05;
   }
 
   render() {

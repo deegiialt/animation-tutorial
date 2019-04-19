@@ -1,25 +1,32 @@
 .navigation {
   height: 100vh;
-  font-family: 'BlueHighway-Bold';
-  font-size: 10vw;
+  font-family: acumin-pro-wide, sans-serif;
+  font-weight: 900;
+  font-style: normal;
+  font-size: 7vw;
+  text-transform: uppercase;
   display: flex;
   justify-content: center;
   align-items: center;
-  // text-align: center;
-  background-color: #A37774;
+  background-color: #0B0014;
   counter-reset: a;
+
+  li {
+    margin-bottom: 5%;
+  }
 
   &__link {
     text-decoration: none;
-    color: #FCDDBC;
+    color: #FFF;
     position: relative;
 
     &:before {
       position: absolute;
       content: '0'counter(a);
+      font-style: normal;
       counter-increment: a;
-      font-size: 20px;
-      left: -25px;
+      font-size: 2vw;
+      left: -30px;
       top: 0;
     }
   }
