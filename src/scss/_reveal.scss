@@ -1,0 +1,10 @@
+.reveal {
+  &__container {
+    height: 250vh;
+  }
+
+  &__item {
+    position: absolute;
+    top: 120%;
+  }
+}
