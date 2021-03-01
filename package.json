@@ -12,7 +12,7 @@
     "react-scripts": "2.1.8",
     "react-scrollmagic": "^2.1.0",
     "react-waypoint": "^9.0.2",
-    "three": "^0.103.0",
+    "three": "^0.125.0",
     "three-orbit-controls": "^82.1.0"
   },
   "scripts": {
